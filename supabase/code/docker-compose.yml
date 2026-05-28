@@ -354,8 +354,10 @@ services:
 
       # Comment out everything below this point if you are using an external Postgres database
   db:
-    image: supabase/postgres:15.8.1.060
+    image: supabase/postgres:15.8.1.085
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     volumes:
       - ./volumes/db/realtime.sql:/docker-entrypoint-initdb.d/migrations/99-realtime.sql:Z
       # Must be superuser to create event trigger
@@ -428,8 +430,10 @@ services:
 
   # Update the DATABASE_URL if you are using an external Postgres database
   supavisor:
-    image: supabase/supavisor:2.5.1
+    image: supabase/supavisor:2.7.4
     restart: unless-stopped
+    ports:
+      - "6543:6543"
     volumes:
       - ./volumes/pooler/pooler.exs:/etc/pooler/pooler.exs:ro,z
     healthcheck:

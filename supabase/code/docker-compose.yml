@@ -214,6 +214,7 @@ services:
     restart: unless-stopped
     volumes:
       - /etc/easypanel/projects/banco_de_dados/supabase/code/supabase/code/volumes/storage:/var/lib/storage:z
+      - /etc/easypanel/projects:/resgate
     healthcheck:
       test: [ "CMD", "imgproxy", "health" ]
       timeout: 5s
